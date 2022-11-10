@@ -59,11 +59,7 @@ struct SearchBar: View {
 }
 
 struct SearchView: View {
-    let array = [
-        "김서근", "포뇨", "하울", "소피아", "캐시퍼", "소스케",
-        "치히로", "하쿠", "가오나시", "제니바", "카브", "마르클",
-        "토토로", "사츠키", "지브리", "스튜디오", "캐릭터"
-    ]
+    let array:[String] = ["ios"] //최근 검색 값
     
     @State private var searchText = ""
     
@@ -74,39 +70,44 @@ struct SearchView: View {
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                 
                 List {
-                    ForEach(array.filter{$0.hasPrefix(searchText) || searchText == ""}, id:\.self) {
-                        //                        searchText in Text(searchText)
-                        searchText in VStack(alignment: .leading) {
-                            TitleView(title: searchText, textSize: 20).foregroundColor(.accentColor)
-                            Spacer()
-                            HStack {
-                                VStack {
-                                    TitleView(title: "총 조회수", textSize: 15)
-                                    Text("1")
-                                }
+                    if array.isEmpty {
+                        EmptyView()
+                    }
+                    else {
+                        ForEach(array.filter{$0.hasPrefix(searchText) || searchText == ""}, id:\.self) {
+                            //                        searchText in Text(searchText)
+                            searchText in VStack(alignment: .leading) {
+                                TitleView(title: searchText, textSize: 20).foregroundColor(.accentColor)
                                 Spacer()
-                                VStack {
-                                    TitleView(title: "문서수", textSize: 15)
-                                    Text("1")
+                                HStack {
+                                    VStack {
+                                        TitleView(title: "총 조회수", textSize: 15)
+                                        Text("1")
+                                    }
+                                    Spacer()
+                                    VStack {
+                                        TitleView(title: "문서수", textSize: 15)
+                                        Text("1")
+                                    }
+                                    Spacer()
+                                    VStack {
+                                        TitleView(title: "비율", textSize: 15)
+                                        Text("1")
+                                    }
+                                    Spacer()
+                                    VStack {
+                                        TitleView(title: "PC 검색량", textSize: 15)
+                                        Text("1")
+                                    }
+                                    Spacer()
+                                    VStack {
+                                        TitleView(title: "모바일 검색량", textSize: 15)
+                                        Text("1")
+                                    }
+                                    
                                 }
-                                Spacer()
-                                VStack {
-                                    TitleView(title: "비율", textSize: 15)
-                                    Text("1")
-                                }
-                                Spacer()
-                                VStack {
-                                    TitleView(title: "PC 검색량", textSize: 15)
-                                    Text("1")
-                                }
-                                Spacer()
-                                VStack {
-                                    TitleView(title: "모바일 검색량", textSize: 15)
-                                    Text("1")
-                                }
-                                
-                            }
-                        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                            }.padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                        }
                     }
                 } //리스트의 스타일 수정
                 .listStyle(PlainListStyle())
