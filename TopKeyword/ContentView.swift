@@ -34,8 +34,7 @@ struct SearchBar: View {
             HStack {
                 TextField("키워드", text: $text)
                     .foregroundColor(.primary)
-                
-                Image(systemName: "magnifyingglass")
+                    .frame(height: 30)
                 
                 if !text.isEmpty {
                     Button(action: {
@@ -46,6 +45,9 @@ struct SearchBar: View {
                 } else {
                     EmptyView()
                 }
+                
+                Image(systemName: "magnifyingglass")
+                
             }
             .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
             .foregroundColor(.secondary)
@@ -75,39 +77,36 @@ struct SearchView: View {
                     ForEach(array.filter{$0.hasPrefix(searchText) || searchText == ""}, id:\.self) {
                         //                        searchText in Text(searchText)
                         searchText in VStack(alignment: .leading) {
-                            HStack {
-                                TitleView(title: "키워드", textSize: 20)
-                                Text(searchText)
-                            }.foregroundColor(.accentColor)
+                            TitleView(title: searchText, textSize: 20).foregroundColor(.accentColor)
                             Spacer()
                             HStack {
                                 VStack {
                                     TitleView(title: "총 조회수", textSize: 15)
-                                    Text(searchText)
+                                    Text("1")
                                 }
                                 Spacer()
                                 VStack {
                                     TitleView(title: "문서수", textSize: 15)
-                                    Text(searchText)
+                                    Text("1")
                                 }
                                 Spacer()
                                 VStack {
                                     TitleView(title: "비율", textSize: 15)
-                                    Text(searchText)
+                                    Text("1")
                                 }
                                 Spacer()
                                 VStack {
                                     TitleView(title: "PC 검색량", textSize: 15)
-                                    Text(searchText)
+                                    Text("1")
                                 }
                                 Spacer()
                                 VStack {
                                     TitleView(title: "모바일 검색량", textSize: 15)
-                                    Text(searchText)
+                                    Text("1")
                                 }
                                 
                             }
-                        }
+                        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                     }
                 } //리스트의 스타일 수정
                 .listStyle(PlainListStyle())
