@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		844CFAA6291CDEB800FBFA9C /* TopKeywordApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CFAA5291CDEB800FBFA9C /* TopKeywordApp.swift */; };
 		844CFAA8291CDEB800FBFA9C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CFAA7291CDEB800FBFA9C /* ContentView.swift */; };
-		844CFAAA291CDEBC00FBFA9C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844CFAA9291CDEBC00FBFA9C /* Assets.xcassets */; };
-		844CFAAD291CDEBC00FBFA9C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 844CFAAC291CDEBC00FBFA9C /* Preview Assets.xcassets */; };
 		844CFAB7291CDEBC00FBFA9C /* TopKeywordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CFAB6291CDEBC00FBFA9C /* TopKeywordTests.swift */; };
 		844CFAC1291CDEBC00FBFA9C /* TopKeywordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CFAC0291CDEBC00FBFA9C /* TopKeywordUITests.swift */; };
 		844CFAC3291CDEBC00FBFA9C /* TopKeywordUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CFAC2291CDEBC00FBFA9C /* TopKeywordUITestsLaunchTests.swift */; };
+		9ABA0659291D26B6001A23BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ABA0658291D26B6001A23BB /* Assets.xcassets */; };
+		9ABA065C291D26E7001A23BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ABA065B291D26E7001A23BB /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,13 +37,13 @@
 		844CFAA2291CDEB800FBFA9C /* TopKeyword.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopKeyword.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844CFAA5291CDEB800FBFA9C /* TopKeywordApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopKeywordApp.swift; sourceTree = "<group>"; };
 		844CFAA7291CDEB800FBFA9C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		844CFAA9291CDEBC00FBFA9C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		844CFAAC291CDEBC00FBFA9C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		844CFAB2291CDEBC00FBFA9C /* TopKeywordTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TopKeywordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		844CFAB6291CDEBC00FBFA9C /* TopKeywordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopKeywordTests.swift; sourceTree = "<group>"; };
 		844CFABC291CDEBC00FBFA9C /* TopKeywordUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TopKeywordUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		844CFAC0291CDEBC00FBFA9C /* TopKeywordUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopKeywordUITests.swift; sourceTree = "<group>"; };
 		844CFAC2291CDEBC00FBFA9C /* TopKeywordUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopKeywordUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9ABA0658291D26B6001A23BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9ABA065B291D26E7001A23BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,20 +94,11 @@
 		844CFAA4291CDEB800FBFA9C /* TopKeyword */ = {
 			isa = PBXGroup;
 			children = (
+				9ABA0651291D2499001A23BB /* Resources */,
 				844CFAA5291CDEB800FBFA9C /* TopKeywordApp.swift */,
 				844CFAA7291CDEB800FBFA9C /* ContentView.swift */,
-				844CFAA9291CDEBC00FBFA9C /* Assets.xcassets */,
-				844CFAAB291CDEBC00FBFA9C /* Preview Content */,
 			);
 			path = TopKeyword;
-			sourceTree = "<group>";
-		};
-		844CFAAB291CDEBC00FBFA9C /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				844CFAAC291CDEBC00FBFA9C /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		844CFAB5291CDEBC00FBFA9C /* TopKeywordTests */ = {
@@ -125,6 +116,23 @@
 				844CFAC2291CDEBC00FBFA9C /* TopKeywordUITestsLaunchTests.swift */,
 			);
 			path = TopKeywordUITests;
+			sourceTree = "<group>";
+		};
+		9ABA0651291D2499001A23BB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9ABA065A291D26D1001A23BB /* Preview Content */,
+				9ABA0658291D26B6001A23BB /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9ABA065A291D26D1001A23BB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				9ABA065B291D26E7001A23BB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,8 +239,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				844CFAAD291CDEBC00FBFA9C /* Preview Assets.xcassets in Resources */,
-				844CFAAA291CDEBC00FBFA9C /* Assets.xcassets in Resources */,
+				9ABA065C291D26E7001A23BB /* Preview Assets.xcassets in Resources */,
+				9ABA0659291D26B6001A23BB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +424,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TopKeyword/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TopKeyword/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = K82D89RA5U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -446,7 +454,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"TopKeyword/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"TopKeyword/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = K82D89RA5U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
