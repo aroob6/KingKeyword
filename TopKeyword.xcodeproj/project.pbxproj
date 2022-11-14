@@ -15,7 +15,8 @@
 		9ABA0659291D26B6001A23BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ABA0658291D26B6001A23BB /* Assets.xcassets */; };
 		9ABA065C291D26E7001A23BB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9ABA065B291D26E7001A23BB /* Preview Assets.xcassets */; };
 		9ABA065E291E0C63001A23BB /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABA065D291E0C63001A23BB /* SearchView.swift */; };
-		9ABA0660291E1515001A23BB /* BlogCafeCount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABA065F291E1515001A23BB /* BlogCafeCount.swift */; };
+		9ABA0660291E1515001A23BB /* NaverApiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABA065F291E1515001A23BB /* NaverApiViewModel.swift */; };
+		9ABA066229225863001A23BB /* NaverAdApiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABA066129225863001A23BB /* NaverAdApiViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +48,8 @@
 		9ABA0658291D26B6001A23BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9ABA065B291D26E7001A23BB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9ABA065D291E0C63001A23BB /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		9ABA065F291E1515001A23BB /* BlogCafeCount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogCafeCount.swift; sourceTree = "<group>"; };
+		9ABA065F291E1515001A23BB /* NaverApiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverApiViewModel.swift; sourceTree = "<group>"; };
+		9ABA066129225863001A23BB /* NaverAdApiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverAdApiViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +104,8 @@
 				844CFAA5291CDEB800FBFA9C /* TopKeywordApp.swift */,
 				844CFAA7291CDEB800FBFA9C /* ContentView.swift */,
 				9ABA065D291E0C63001A23BB /* SearchView.swift */,
-				9ABA065F291E1515001A23BB /* BlogCafeCount.swift */,
+				9ABA065F291E1515001A23BB /* NaverApiViewModel.swift */,
+				9ABA066129225863001A23BB /* NaverAdApiViewModel.swift */,
 			);
 			path = TopKeyword;
 			sourceTree = "<group>";
@@ -273,7 +276,8 @@
 			files = (
 				844CFAA8291CDEB800FBFA9C /* ContentView.swift in Sources */,
 				9ABA065E291E0C63001A23BB /* SearchView.swift in Sources */,
-				9ABA0660291E1515001A23BB /* BlogCafeCount.swift in Sources */,
+				9ABA0660291E1515001A23BB /* NaverApiViewModel.swift in Sources */,
+				9ABA066229225863001A23BB /* NaverAdApiViewModel.swift in Sources */,
 				844CFAA6291CDEB800FBFA9C /* TopKeywordApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,11 +9,11 @@ import SwiftUI
 import Combine
 
 struct BlogModel: Codable {
-    var total: Int
+    let total: Int
 }
 
 struct CafeModel: Codable {
-    var total: Int
+    let total: Int
 }
 
 class NaverApiViewModel: ObservableObject {
@@ -47,8 +47,8 @@ class NaverApiViewModel: ObservableObject {
             .decode(type: BlogModel.self, decoder: JSONDecoder())
             .sink { completion in
                 print("Completion: \(completion)")
-            } receiveValue: { [weak self] returnBlog in
-                self?.blogs = returnBlog
+            } receiveValue: { [weak self] res in
+                self?.blogs = res
             }
             .store(in: &cancellables)
     }
@@ -79,8 +79,8 @@ class NaverApiViewModel: ObservableObject {
             .decode(type: CafeModel.self, decoder: JSONDecoder())
             .sink { completion in
                 print("Completion: \(completion)")
-            } receiveValue: { [weak self] returnCafe in
-                self?.cafes = returnCafe
+            } receiveValue: { [weak self] res in
+                self?.cafes = res
             }
             .store(in: &cancellables)
     }

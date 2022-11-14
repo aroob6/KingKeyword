@@ -37,7 +37,6 @@ struct SearchBar: View {
 }
 
 struct SearchView: View {
-    var check = false
     @State private var searchText = ""
     @StateObject var viewModel = NaverApiViewModel()
     
