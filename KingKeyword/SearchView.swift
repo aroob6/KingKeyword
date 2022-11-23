@@ -27,7 +27,6 @@ struct SearchBar: View {
                 Image(systemName: "")
             }
             .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
-            .cornerRadius(5.0)
             .foregroundColor(.secondary)
             .background(Color(.secondarySystemBackground))
         }
@@ -59,32 +58,40 @@ struct SearchView: View {
                         List {
                             VStack() {
                                 let blog = naverApiviewModel.blogs.total
-                                let casfe = naverApiviewModel.cafes.total
+                                let cafe = naverApiviewModel.cafes.total
+                                let allDoc = blog + cafe
                                 let pcAmount = naverAdApiviewModel.keywordList.keywordList[0].monthlyPcQcCnt.num
                                 let mobileAmount = naverAdApiviewModel.keywordList.keywordList[0].monthlyMobileQcCnt.num
-                                let persent = Double(blog) / Double(pcAmount + mobileAmount)
+                                let allSearch = pcAmount + mobileAmount
+                                let blogPersent = Double(blog) / Double(allSearch)
+                                let cafePersent = Double(cafe) / Double(allSearch)
                                 
                                 Spacer()
                                 HStack {
                                     TitleTextView(title: searchText, textSize: 20).foregroundColor(.black)
-                                    TitleTextView(title: "비율: \(String(format: "%.3f", persent))", textSize: 20).foregroundColor(.accentColor)
+                                    Spacer()
+                                    VStack(alignment: .leading) {
+                                        TitleTextView(title: "블로그 비율: \(String(format: "%.3f", blogPersent))", textSize: 20).foregroundColor(.green)
+                                        TitleTextView(title: "카페 비율: \(String(format: "%.3f", cafePersent))", textSize: 20).foregroundColor(.brown)
+                                    }
+                                    Spacer()
                                 }
                                 Spacer()
                                 Spacer()
                                 HStack {
-                                    TypeView(title: "블로그글 수", content: "\(blog)", titleTextSize: 15)
+                                    TypeView(title: "블로그글 수", content: "\(blog.numberFormatter())", titleTextSize: 15)
                                     Spacer()
-                                    TypeView(title: "카페글 수", content: "\(casfe)", titleTextSize: 15)
+                                    TypeView(title: "카페글 수", content: "\(cafe.numberFormatter())", titleTextSize: 15)
                                     Spacer()
-                                    TypeView(title: "총 문서 수", content: "\(blog + casfe)", titleTextSize: 15)
+                                    TypeView(title: "총 문서 수", content: "\(allDoc.numberFormatter())", titleTextSize: 15)
                                 }
                                 Spacer()
                                 HStack {
-                                    TypeView(title: "PC 검색수", content: "\(pcAmount)", titleTextSize: 15)
+                                    TypeView(title: "PC 검색수", content: "\(pcAmount.numberFormatter())", titleTextSize: 15)
                                     Spacer()
-                                    TypeView(title: "모바일 검색수", content: "\(mobileAmount)", titleTextSize: 15)
+                                    TypeView(title: "모바일 검색수", content: "\(mobileAmount.numberFormatter())", titleTextSize: 15)
                                     Spacer()
-                                    TypeView(title: "총 검색수", content: "\(pcAmount + mobileAmount)", titleTextSize: 15)
+                                    TypeView(title: "총 검색수", content: "\(allSearch.numberFormatter())", titleTextSize: 15)
 
                                 }
                                 
@@ -99,13 +106,14 @@ struct SearchView: View {
                                     }
                                     ScrollView(.horizontal) {
                                         LazyHStack {
-                                            ForEach(0 ..< 10, id: \.self) { index in
+                                            ForEach(0 ..< naverAdApiviewModel.keywordList.keywordList.count, id: \.self) { index in
                                                 if naverAdApiviewModel.keywordList.keywordList.count > 1 {
+                                                    
                                                     Text("\(naverAdApiviewModel.keywordList.keywordList[index].relKeyword)")
                                                         .font(Font.system(size: 15))
                                                         .padding()
                                                         .background(Color(.secondarySystemBackground))
-                                                        .cornerRadius(10.0)
+                                                        
                                                 }
                                                 else {
                                                     EmptyView()
@@ -144,7 +152,6 @@ struct TypeView: View {
         }
         .frame(maxWidth: .infinity)
         .background(Color(.secondarySystemBackground))
-        .cornerRadius(5.0)
     }
 }
 struct TitleTextView: View {
@@ -169,3 +176,4 @@ struct ExplanView: View {
         }
     }
 }
+
