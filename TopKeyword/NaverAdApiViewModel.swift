@@ -98,13 +98,16 @@ class NaverAdApiViewModel: ObservableObject {
     var cancellables = Set<AnyCancellable>()
     
     func getRelKwdStat(query: String) {
+        //공백제거
+        let trimQuery = query.trimmingCharacters(in: .whitespaces)
+        
         let url = "https://api.naver.com/keywordstool"
         guard var urlComponents = URLComponents(string: url) else {
             print("Error: cannot create URLComponents")
             return
         }
         urlComponents.queryItems = [
-            URLQueryItem(name: "hintKeywords", value: query),
+            URLQueryItem(name: "hintKeywords", value: trimQuery),
             URLQueryItem(name: "showDetail", value: "1")
         ]
         

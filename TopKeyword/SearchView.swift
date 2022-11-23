@@ -56,26 +56,65 @@ struct SearchView: View {
                         EmptyView()
                     }
                     else {
-                        VStack(alignment: .leading) {
+                        VStack() {
+                            let blog = naverApiviewModel.blogs.total
+                            let casfe = naverApiviewModel.cafes.total
+                            let pcAmount = naverAdApiviewModel.keywordList.keywordList[0].monthlyPcQcCnt.num
+                            let mobileAmount = naverAdApiviewModel.keywordList.keywordList[0].monthlyMobileQcCnt.num
+                            let persent = Double(blog + casfe) / Double(pcAmount + mobileAmount)
+                            
                             Spacer()
-                            TitleTextView(title: searchText, textSize: 20).foregroundColor(.accentColor)
+                            HStack {
+                                TitleTextView(title: searchText, textSize: 20).foregroundColor(.black)
+                                TitleTextView(title: "비율: \(String(format: "%.3f", persent))", textSize: 20).foregroundColor(.accentColor)
+                            }
                             Spacer()
                             Spacer()
                             HStack {
-                                TypeView(title: "블로그글 수", content: "\(naverApiviewModel.blogs.total)", titleTextSize: 15)
+                                TypeView(title: "블로그글 수", content: "\(blog)", titleTextSize: 15)
                                 Spacer()
-                                TypeView(title: "총 조회수", content: "\(naverAdApiviewModel.keywordList.keywordList[0].relKeyword)", titleTextSize: 15)
+                                TypeView(title: "카페글 수", content: "\(casfe)", titleTextSize: 15)
                                 Spacer()
-                                TypeView(title: "PC 검색량", content: "\(naverAdApiviewModel.keywordList.keywordList[0].monthlyPcQcCnt.num)", titleTextSize: 15)
+                                TypeView(title: "총 문서 수", content: "\(blog + casfe)", titleTextSize: 15)
                             }
                             Spacer()
                             HStack {
-                                TypeView(title: "카페글 수", content: "\(naverApiviewModel.cafes.total)", titleTextSize: 15)
+                                TypeView(title: "PC 검색량", content: "\(pcAmount)", titleTextSize: 15)
                                 Spacer()
-                                TypeView(title: "비율", content: "1", titleTextSize: 15)
+                                TypeView(title: "모바일 검색량", content: "\(mobileAmount)", titleTextSize: 15)
                                 Spacer()
-                                TypeView(title: "모바일 검색량", content: "\(naverAdApiviewModel.keywordList.keywordList[0].monthlyMobileQcCnt.num)", titleTextSize: 15)
+                                TypeView(title: "총 검색량", content: "\(pcAmount + mobileAmount)", titleTextSize: 15)
 
+                            }
+                        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                        
+//                        Divider()
+                        
+                        //연관검색어 뷰
+                        VStack() {
+                            Spacer()
+                            HStack {
+                                TitleTextView(title: "연관검색어", textSize: 20).foregroundColor(.black)
+                                TitleTextView(title: "10개까지만 보임", textSize: 10).foregroundColor(.gray)
+                            }
+                            Spacer()
+                            Spacer()
+                            ScrollView(.horizontal) {
+                                LazyHStack {
+                                    ForEach(0 ..< 10, id: \.self) { index in
+                                        if naverAdApiviewModel.keywordList.keywordList.count > 1 {
+                                            Text("\(naverAdApiviewModel.keywordList.keywordList[index].relKeyword)")
+                                                .font(Font.system(size: 15))
+                                                .padding()
+                                                .frame(maxHeight: .infinity)
+                                                .background(Color(.secondarySystemBackground))
+                                                .cornerRadius(5.0)
+                                        }
+                                        else {
+                                            EmptyView()
+                                        }
+                                    }
+                                }
                             }
                         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                     }
@@ -116,7 +155,7 @@ struct TitleTextView: View {
     var title: String
     var textSize: CGFloat
     var body: some View {
-        Text(title).fontWeight(Font.Weight.semibold).font(Font.system(size: textSize))
+        Text(title).fontWeight(Font.Weight.semibold)
     }
 }
 
