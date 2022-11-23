@@ -66,7 +66,7 @@ struct SearchView: View {
                                 Spacer()
                                 TypeView(title: "총 조회수", content: "\(naverAdApiviewModel.keywordList.keywordList[0].relKeyword)", titleTextSize: 15)
                                 Spacer()
-                                TypeView(title: "PC 검색량", content: "1", titleTextSize: 15)
+                                TypeView(title: "PC 검색량", content: "\(naverAdApiviewModel.keywordList.keywordList[0].monthlyPcQcCnt.num)", titleTextSize: 15)
                             }
                             Spacer()
                             HStack {
@@ -74,7 +74,7 @@ struct SearchView: View {
                                 Spacer()
                                 TypeView(title: "비율", content: "1", titleTextSize: 15)
                                 Spacer()
-                                TypeView(title: "모바일 검색량", content: "1", titleTextSize: 15)
+                                TypeView(title: "모바일 검색량", content: "\(naverAdApiviewModel.keywordList.keywordList[0].monthlyMobileQcCnt.num)", titleTextSize: 15)
 
                             }
                         }.padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))

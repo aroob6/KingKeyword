@@ -16,7 +16,14 @@ struct KeywordList: Codable {
 // MARK: - KeywordListElement
 struct KeywordListElement: Codable {
     let relKeyword: String
-//    let monthlyPCQcCnt, monthlyMobileQcCnt: Int
+    let monthlyPcQcCnt: MonthlyMobileQcCntUnion
+    let monthlyMobileQcCnt: MonthlyMobileQcCntUnion
+    
+    init() {
+        self.relKeyword = ""
+        self.monthlyPcQcCnt = MonthlyMobileQcCntUnion.integer(0)
+        self.monthlyMobileQcCnt = MonthlyMobileQcCntUnion.integer(0)
+    }
 //    let monthlyAvePCClkCnt, monthlyAveMobileClkCnt, monthlyAvePCCtr, monthlyAveMobileCtr: Double
 //    let plAvgDepth: Int
 //    let compIdx: String
@@ -32,6 +39,46 @@ struct KeywordListElement: Codable {
 //    }
 }
 
+enum MonthlyMobileQcCntUnion: Codable {
+    case enumeration(MonthlyMobileQcCntEnum)
+    case integer(Int)
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let x = try? container.decode(Int.self) {
+            self = .integer(x)
+            return
+        }
+        if let x = try? container.decode(MonthlyMobileQcCntEnum.self) {
+            self = .enumeration(x)
+            return
+        }
+        throw DecodingError.typeMismatch(MonthlyMobileQcCntUnion.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for MonthlyMobileQcCntUnion"))
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        switch self {
+        case .enumeration(let x):
+            try container.encode(x)
+        case .integer(let x):
+            try container.encode(x)
+        }
+    }
+}
+
+enum MonthlyMobileQcCntEnum: String, Codable {
+    case the10 = "< 10"
+}
+
+extension MonthlyMobileQcCntUnion {
+    var num: Int {
+        switch self {
+        case .integer(let num): return num
+        default: return 0 //10개 이하
+        }
+    }
+}
 
 func hmacSHA256 (timestamp: Double, method: String, apiUrl: String, secretKey: String) -> String {
     let timestampString = "\(Int(timestamp))"
@@ -47,7 +94,7 @@ func hmacSHA256 (timestamp: Double, method: String, apiUrl: String, secretKey: S
 }
 
 class NaverAdApiViewModel: ObservableObject {
-    @Published var keywordList = KeywordList(keywordList: [KeywordListElement(relKeyword: "0")])
+    @Published var keywordList = KeywordList(keywordList: [KeywordListElement()])
     var cancellables = Set<AnyCancellable>()
     
     func getRelKwdStat(query: String) {
@@ -63,6 +110,7 @@ class NaverAdApiViewModel: ObservableObject {
         
         guard let requestURL = urlComponents.url else { return }
         var request = URLRequest(url: requestURL)
+        print(request)
         
         let METHOD = "GET"
         let APIURI = "/keywordstool"
@@ -72,6 +120,9 @@ class NaverAdApiViewModel: ObservableObject {
         let CustomerKey = "2713303"
         let SIGNATURE = hmacSHA256(timestamp: CURRENTTIME, method: METHOD, apiUrl: APIURI, secretKey: SECRET_KEY)
 
+        print(CURRENTTIME)
+        print(SIGNATURE)
+        
         request.addValue("\(Int(CURRENTTIME))", forHTTPHeaderField: "X-Timestamp")
         request.addValue(API_KEY, forHTTPHeaderField: "X-API-KEY")
         request.addValue(SIGNATURE, forHTTPHeaderField: "X-Signature")
