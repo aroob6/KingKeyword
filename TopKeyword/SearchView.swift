@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SearchBar: View {
     @Binding var text: String
-    @StateObject var viewModel = NaverApiViewModel()
     
     var body: some View {
         HStack {
@@ -38,15 +37,17 @@ struct SearchBar: View {
 
 struct SearchView: View {
     @State private var searchText = ""
-    @StateObject var viewModel = NaverApiViewModel()
+    @StateObject var naverApiviewModel = NaverApiViewModel()
+    @StateObject var naverAdApiviewModel = NaverAdApiViewModel()
     
     var body: some View {
         NavigationView {
             VStack {
                 SearchBar(text: $searchText)
                     .onSubmit {
-                        viewModel.getBlog(query: searchText)
-                        viewModel.getCafe(query: searchText)
+                        naverApiviewModel.getBlog(query: searchText)
+                        naverApiviewModel.getCafe(query: searchText)
+                        naverAdApiviewModel.getRelKwdStat(query: searchText)
                     }
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                 
@@ -61,15 +62,15 @@ struct SearchView: View {
                             Spacer()
                             Spacer()
                             HStack {
-                                TypeView(title: "블로그글 수", content: "\(viewModel.blogs.total)", titleTextSize: 15)
+                                TypeView(title: "블로그글 수", content: "\(naverApiviewModel.blogs.total)", titleTextSize: 15)
                                 Spacer()
-                                TypeView(title: "총 조회수", content: "1", titleTextSize: 15)
+                                TypeView(title: "총 조회수", content: "\(naverAdApiviewModel.keywordList.keywordList[0].relKeyword)", titleTextSize: 15)
                                 Spacer()
                                 TypeView(title: "PC 검색량", content: "1", titleTextSize: 15)
                             }
                             Spacer()
                             HStack {
-                                TypeView(title: "카페글 수", content: "\(viewModel.cafes.total)", titleTextSize: 15)
+                                TypeView(title: "카페글 수", content: "\(naverApiviewModel.cafes.total)", titleTextSize: 15)
                                 Spacer()
                                 TypeView(title: "비율", content: "1", titleTextSize: 15)
                                 Spacer()
