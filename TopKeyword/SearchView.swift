@@ -51,81 +51,73 @@ struct SearchView: View {
                     }
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                 
-                List {
+                VStack {
                     if searchText == "" {
                         EmptyView()
                     }
                     else {
-                        VStack() {
-                            let blog = naverApiviewModel.blogs.total
-                            let casfe = naverApiviewModel.cafes.total
-                            let pcAmount = naverAdApiviewModel.keywordList.keywordList[0].monthlyPcQcCnt.num
-                            let mobileAmount = naverAdApiviewModel.keywordList.keywordList[0].monthlyMobileQcCnt.num
-                            let persent = Double(blog + casfe) / Double(pcAmount + mobileAmount)
-                            
-                            Spacer()
-                            HStack {
-                                TitleTextView(title: searchText, textSize: 20).foregroundColor(.black)
-                                TitleTextView(title: "비율: \(String(format: "%.3f", persent))", textSize: 20).foregroundColor(.accentColor)
-                            }
-                            Spacer()
-                            Spacer()
-                            HStack {
-                                TypeView(title: "블로그글 수", content: "\(blog)", titleTextSize: 15)
+                        List {
+                            VStack() {
+                                let blog = naverApiviewModel.blogs.total
+                                let casfe = naverApiviewModel.cafes.total
+                                let pcAmount = naverAdApiviewModel.keywordList.keywordList[0].monthlyPcQcCnt.num
+                                let mobileAmount = naverAdApiviewModel.keywordList.keywordList[0].monthlyMobileQcCnt.num
+                                let persent = Double(blog + casfe) / Double(pcAmount + mobileAmount)
+                                
                                 Spacer()
-                                TypeView(title: "카페글 수", content: "\(casfe)", titleTextSize: 15)
+                                HStack {
+                                    TitleTextView(title: searchText, textSize: 20).foregroundColor(.black)
+                                    TitleTextView(title: "비율: \(String(format: "%.3f", persent))", textSize: 20).foregroundColor(.accentColor)
+                                }
                                 Spacer()
-                                TypeView(title: "총 문서 수", content: "\(blog + casfe)", titleTextSize: 15)
-                            }
-                            Spacer()
-                            HStack {
-                                TypeView(title: "PC 검색량", content: "\(pcAmount)", titleTextSize: 15)
                                 Spacer()
-                                TypeView(title: "모바일 검색량", content: "\(mobileAmount)", titleTextSize: 15)
+                                HStack {
+                                    TypeView(title: "블로그글 수", content: "\(blog)", titleTextSize: 15)
+                                    Spacer()
+                                    TypeView(title: "카페글 수", content: "\(casfe)", titleTextSize: 15)
+                                    Spacer()
+                                    TypeView(title: "총 문서 수", content: "\(blog + casfe)", titleTextSize: 15)
+                                }
                                 Spacer()
-                                TypeView(title: "총 검색량", content: "\(pcAmount + mobileAmount)", titleTextSize: 15)
+                                HStack {
+                                    TypeView(title: "PC 검색량", content: "\(pcAmount)", titleTextSize: 15)
+                                    Spacer()
+                                    TypeView(title: "모바일 검색량", content: "\(mobileAmount)", titleTextSize: 15)
+                                    Spacer()
+                                    TypeView(title: "총 검색량", content: "\(pcAmount + mobileAmount)", titleTextSize: 15)
 
-                            }
-                        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
-                        
-//                        Divider()
-                        
-                        //연관검색어 뷰
-                        VStack() {
-                            Spacer()
-                            HStack {
-                                TitleTextView(title: "연관검색어", textSize: 20).foregroundColor(.black)
-                                TitleTextView(title: "10개까지만 보임", textSize: 10).foregroundColor(.gray)
-                            }
-                            Spacer()
-                            Spacer()
-                            ScrollView(.horizontal) {
-                                LazyHStack {
-                                    ForEach(0 ..< 10, id: \.self) { index in
-                                        if naverAdApiviewModel.keywordList.keywordList.count > 1 {
-                                            Text("\(naverAdApiviewModel.keywordList.keywordList[index].relKeyword)")
-                                                .font(Font.system(size: 15))
-                                                .padding()
-                                                .frame(maxHeight: .infinity)
-                                                .background(Color(.secondarySystemBackground))
-                                                .cornerRadius(5.0)
-                                        }
-                                        else {
-                                            EmptyView()
+                                }
+                                
+                                Divider().padding(EdgeInsets(top: 30, leading: 0, bottom: 20, trailing: 0))
+                                
+                                //연관검색어 뷰
+                                VStack() {
+                                    Spacer()
+                                    HStack {
+                                        TitleTextView(title: "연관검색어", textSize: 20).foregroundColor(.black)
+                                        TitleTextView(title: "10개까지 노출", textSize: 10).foregroundColor(.gray)
+                                    }
+                                    ScrollView(.horizontal) {
+                                        LazyHStack {
+                                            ForEach(0 ..< 10, id: \.self) { index in
+                                                if naverAdApiviewModel.keywordList.keywordList.count > 1 {
+                                                    Text("\(naverAdApiviewModel.keywordList.keywordList[index].relKeyword)")
+                                                        .font(Font.system(size: 15))
+                                                        .padding()
+                                                        .background(Color(.secondarySystemBackground))
+                                                        .cornerRadius(10.0)
+                                                }
+                                                else {
+                                                    EmptyView()
+                                                }
+                                            }
                                         }
                                     }
-                                }
+                                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                             }
-                        }.padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                        }
                     }
-                }
-//                리스트의 스타일 수정
-//                .listStyle(PlainListStyle())
-//                .listStyle(GroupedListStyle())
-////                화면 터치시 키보드 숨김
-//                .onTapGesture {
-//                    hideKeyboard()
-//                }
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .navigationBarTitle("키워드 검색")
         }
