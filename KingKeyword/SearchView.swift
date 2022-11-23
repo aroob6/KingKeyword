@@ -13,7 +13,7 @@ struct SearchBar: View {
     var body: some View {
         HStack {
             HStack {
-                TextField("키워드", text: $text)
+                TextField("키워드 검색", text: $text)
                     .foregroundColor(.primary)
                     .frame(height: 30)
                 if !text.isEmpty {
@@ -62,7 +62,7 @@ struct SearchView: View {
                                 let casfe = naverApiviewModel.cafes.total
                                 let pcAmount = naverAdApiviewModel.keywordList.keywordList[0].monthlyPcQcCnt.num
                                 let mobileAmount = naverAdApiviewModel.keywordList.keywordList[0].monthlyMobileQcCnt.num
-                                let persent = Double(blog + casfe) / Double(pcAmount + mobileAmount)
+                                let persent = Double(blog) / Double(pcAmount + mobileAmount)
                                 
                                 Spacer()
                                 HStack {
@@ -80,11 +80,11 @@ struct SearchView: View {
                                 }
                                 Spacer()
                                 HStack {
-                                    TypeView(title: "PC 검색량", content: "\(pcAmount)", titleTextSize: 15)
+                                    TypeView(title: "PC 검색수", content: "\(pcAmount)", titleTextSize: 15)
                                     Spacer()
-                                    TypeView(title: "모바일 검색량", content: "\(mobileAmount)", titleTextSize: 15)
+                                    TypeView(title: "모바일 검색수", content: "\(mobileAmount)", titleTextSize: 15)
                                     Spacer()
-                                    TypeView(title: "총 검색량", content: "\(pcAmount + mobileAmount)", titleTextSize: 15)
+                                    TypeView(title: "총 검색수", content: "\(pcAmount + mobileAmount)", titleTextSize: 15)
 
                                 }
                                 
@@ -94,7 +94,7 @@ struct SearchView: View {
                                 VStack() {
                                     Spacer()
                                     HStack {
-                                        TitleTextView(title: "연관검색어", textSize: 20).foregroundColor(.black)
+                                        TitleTextView(title: "연관키워드", textSize: 20).foregroundColor(.black)
                                         TitleTextView(title: "10개까지 노출", textSize: 10).foregroundColor(.gray)
                                     }
                                     ScrollView(.horizontal) {
@@ -113,13 +113,17 @@ struct SearchView: View {
                                             }
                                         }
                                     }
-                                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+                                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                                
+                                //설명 뷰
+                                ExplanView().padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
                             }
                         }
+                        
                     }
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .navigationBarTitle("키워드 검색")
+            .navigationBarTitle("킹키워드")
         }
     }
 
@@ -155,5 +159,13 @@ struct ContentTextView: View {
     var content: String
     var body: some View {
         Text(content)
+    }
+}
+
+struct ExplanView: View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            TitleTextView(title: "PC/모바일 검색 수 - 최근 한 달간 네이버를 이용한 사용자가 PC 및 모바일 에서 해당 키워드를 검색한 횟수\n\n블로그/카페 글 수 - 네이버 총 검색 결과 개수", textSize: 8).foregroundColor(.gray).minimumScaleFactor(0.5)
+        }
     }
 }

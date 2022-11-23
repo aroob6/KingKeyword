@@ -75,7 +75,7 @@ extension MonthlyMobileQcCntUnion {
     var num: Int {
         switch self {
         case .integer(let num): return num
-        default: return 0 //10개 이하
+        default: return 10 //10개 이하
         }
     }
 }
@@ -99,7 +99,7 @@ class NaverAdApiViewModel: ObservableObject {
     
     func getRelKwdStat(query: String) {
         //공백제거
-        let trimQuery = query.trimmingCharacters(in: .whitespaces)
+        let trimQuery = query.trimmingCharacters(in: .whitespaces).uppercased()
         
         let url = "https://api.naver.com/keywordstool"
         guard var urlComponents = URLComponents(string: url) else {
