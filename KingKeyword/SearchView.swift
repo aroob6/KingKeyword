@@ -14,14 +14,16 @@ struct SearchBar: View {
     var body: some View {
         HStack {
             HStack {
-                TextField("키워드 검색", text: $text)
+                TextField("키워드 검색 (엔터키를 눌러주세요)", text: $text)
                     .foregroundColor(.primary)
                     .frame(height: 30)
+                Image(systemName: "magnifyingglass")
                 if !text.isEmpty {
                     Button(action: { self.text = ""}) {
-                        Image(systemName: "")
+                        Image(systemName: "xmark.circle.fill") //xmark.circle.fill
                     }
-                } else {
+                }
+                else {
                     EmptyView()
                 }
                 
@@ -42,10 +44,10 @@ struct SearchView: View {
     
     init() {
            //Use this if NavigationBarTitle is with Large Font
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: Color.init(hex: "B9A4E9").cgColor]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: Color.init(hex: "4D86DA").cgColor ?? ""]
 
            //Use this if NavigationBarTitle is with displayMode = .inline
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Color.init(hex: "B9A4E9").cgColor]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Color.init(hex: "4D86DA").cgColor ?? ""]
        }
     
     var body: some View { 
@@ -55,14 +57,21 @@ struct SearchView: View {
                 BannerAdView().frame(height: 70)//.background(Color.red)
                 SearchBar(text: $searchText)
                     .onSubmit {
+                        let trimText = searchText.trimmingCharacters(in: .whitespaces)
+                        if trimText.count == 0 {
+                            print("빈값 ")
+                            naverApiviewModel.reset()
+                            naverAdApiviewModel.reset()
+                            return
+                        }
                         naverApiviewModel.getBlog(query: searchText)
                         naverApiviewModel.getCafe(query: searchText)
                         naverAdApiviewModel.getRelKwdStat(query: searchText)
                     }
                     .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
-                
                 VStack {
-                    if searchText == "" {
+                    let trimText = searchText.trimmingCharacters(in: .whitespaces)
+                    if trimText.count == 0 {
                         EmptyView()
                     }
                     else {
@@ -75,16 +84,17 @@ struct SearchView: View {
                                 let mobileAmount = naverAdApiviewModel.keywordList.keywordList[0].monthlyMobileQcCnt.num
                                 let allSearch = pcAmount + mobileAmount
                                 let blogPersent = Double(blog) / Double(allSearch)
-                                let cafePersent = Double(cafe) / Double(allSearch)
+//                                let cafePersent = Double(cafe) / Double(allSearch)
                                 
                                 Spacer()
                                 HStack {
                                     TitleTextView(title: searchText, textSize: 20).foregroundColor(.black)
-                                    Spacer()
-                                    VStack(alignment: .leading) {
-                                        TitleTextView(title: "블로그 비율: \(String(format: "%.3f", blogPersent))", textSize: 20).foregroundColor(.green)
-                                        TitleTextView(title: "카페 비율: \(String(format: "%.3f", cafePersent))", textSize: 20).foregroundColor(.brown)
-                                    }
+//                                    Spacer()
+                                    TitleTextView(title: "블로그 비율: \(String(format: "%.3f", blogPersent))", textSize: 20).foregroundColor(Color.init(hex: "4D86DA"))
+//                                    VStack(alignment: .leading) {
+//                                        TitleTextView(title: "블로그 비율: \(String(format: "%.3f", blogPersent))", textSize: 20).foregroundColor(.green)
+//                                        TitleTextView(title: "카페 비율: \(String(format: "%.3f", cafePersent))", textSize: 20).foregroundColor(.brown)
+//                                    }
                                     Spacer()
                                 }
                                 Spacer()
@@ -113,7 +123,7 @@ struct SearchView: View {
                                     Spacer()
                                     HStack {
                                         TitleTextView(title: "연관키워드", textSize: 20).foregroundColor(.black)
-//                                        TitleTextView(title: "10개까지 노출", textSize: 10).foregroundColor(.gray)
+                                        TitleTextView(title: "\(naverAdApiviewModel.keywordList.keywordList.count)개", textSize: 10).foregroundColor(.gray)
                                     }
                                     ScrollView(.horizontal) {
                                         LazyHStack {
@@ -140,7 +150,8 @@ struct SearchView: View {
                         }
                         
                     }
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .navigationBarTitle("킹키워드")
         }

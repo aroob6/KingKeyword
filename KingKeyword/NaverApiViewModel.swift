@@ -21,6 +21,11 @@ class NaverApiViewModel: ObservableObject {
     @Published var cafes = CafeModel(total: 0)
     var cancellables = Set<AnyCancellable>()
     
+    func reset() {
+        self.blogs = BlogModel(total: 0)
+        self.cafes = CafeModel(total: 0)
+    }
+    
     func getBlog(query: String) {
         let url = "https://openapi.naver.com/v1/search/blog.json"
         guard var urlComponents = URLComponents(string: url) else {

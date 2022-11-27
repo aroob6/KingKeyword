@@ -97,6 +97,10 @@ class NaverAdApiViewModel: ObservableObject {
     @Published var keywordList = KeywordList(keywordList: [KeywordListElement()])
     var cancellables = Set<AnyCancellable>()
     
+    func reset() {
+        self.keywordList = KeywordList(keywordList: [KeywordListElement()])
+    }
+    
     func getRelKwdStat(query: String) {
         //공백제거
         let trimQuery = query.trimmingCharacters(in: .whitespaces).uppercased()
