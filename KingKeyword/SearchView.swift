@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
 
 struct SearchBar: View {
     @Binding var text: String
@@ -39,9 +40,19 @@ struct SearchView: View {
     @StateObject var naverApiviewModel = NaverApiViewModel()
     @StateObject var naverAdApiviewModel = NaverAdApiViewModel()
     
-    var body: some View {
+    init() {
+           //Use this if NavigationBarTitle is with Large Font
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: Color.init(hex: "B9A4E9").cgColor]
+
+           //Use this if NavigationBarTitle is with displayMode = .inline
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: Color.init(hex: "B9A4E9").cgColor]
+       }
+    
+    var body: some View { 
         NavigationView {
             VStack {
+                Spacer()
+                BannerAdView().frame(height: 70)//.background(Color.red)
                 SearchBar(text: $searchText)
                     .onSubmit {
                         naverApiviewModel.getBlog(query: searchText)
@@ -102,7 +113,7 @@ struct SearchView: View {
                                     Spacer()
                                     HStack {
                                         TitleTextView(title: "연관키워드", textSize: 20).foregroundColor(.black)
-                                        TitleTextView(title: "10개까지 노출", textSize: 10).foregroundColor(.gray)
+//                                        TitleTextView(title: "10개까지 노출", textSize: 10).foregroundColor(.gray)
                                     }
                                     ScrollView(.horizontal) {
                                         LazyHStack {

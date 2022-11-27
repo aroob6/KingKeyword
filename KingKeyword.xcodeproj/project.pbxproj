@@ -20,6 +20,7 @@
 		9ABA0660291E1515001A23BB /* NaverApiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABA065F291E1515001A23BB /* NaverApiViewModel.swift */; };
 		9ABA066229225863001A23BB /* NaverAdApiViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABA066129225863001A23BB /* NaverAdApiViewModel.swift */; };
 		9ABA0664292E4B62001A23BB /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABA0663292E4B62001A23BB /* Color.swift */; };
+		9ABA06672930A23B001A23BB /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABA06662930A23B001A23BB /* BannerView.swift */; };
 		C2F8A9E85E25732E974AF657 /* Pods_KingKeywordTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1F14BA27C53AEE08C18586C /* Pods_KingKeywordTests.framework */; };
 		FDBAD32C7F79289570765510 /* Pods_KingKeyword_KingKeywordUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D777A9799A22C525BC658482 /* Pods_KingKeyword_KingKeywordUITests.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +63,8 @@
 		9ABA065F291E1515001A23BB /* NaverApiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverApiViewModel.swift; sourceTree = "<group>"; };
 		9ABA066129225863001A23BB /* NaverAdApiViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverAdApiViewModel.swift; sourceTree = "<group>"; };
 		9ABA0663292E4B62001A23BB /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		9ABA066529309F3C001A23BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9ABA06662930A23B001A23BB /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		A1F14BA27C53AEE08C18586C /* Pods_KingKeywordTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KingKeywordTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4F0E97E3351794FC227E0EA /* Pods-KingKeyword.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KingKeyword.debug.xcconfig"; path = "Target Support Files/Pods-KingKeyword/Pods-KingKeyword.debug.xcconfig"; sourceTree = "<group>"; };
 		D777A9799A22C525BC658482 /* Pods_KingKeyword_KingKeywordUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KingKeyword_KingKeywordUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +124,7 @@
 		844CFAA4291CDEB800FBFA9C /* KingKeyword */ = {
 			isa = PBXGroup;
 			children = (
+				9ABA066529309F3C001A23BB /* Info.plist */,
 				84A62C7229261A4600EB4048 /* Extension */,
 				9ABA0651291D2499001A23BB /* Resources */,
 				844CFAA5291CDEB800FBFA9C /* TopKeywordApp.swift */,
@@ -128,6 +132,7 @@
 				9ABA065D291E0C63001A23BB /* SearchView.swift */,
 				9ABA065F291E1515001A23BB /* NaverApiViewModel.swift */,
 				9ABA066129225863001A23BB /* NaverAdApiViewModel.swift */,
+				9ABA06662930A23B001A23BB /* BannerView.swift */,
 			);
 			path = KingKeyword;
 			sourceTree = "<group>";
@@ -185,7 +190,6 @@
 				3DC1B2F85F0ACBCE762F2ED0 /* Pods-KingKeywordTests.debug.xcconfig */,
 				0D391F0A1A7A9FEE1C56C0D8 /* Pods-KingKeywordTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -441,6 +445,7 @@
 				84A62C7429261A5700EB4048 /* Int.swift in Sources */,
 				9ABA0664292E4B62001A23BB /* Color.swift in Sources */,
 				9ABA065E291E0C63001A23BB /* SearchView.swift in Sources */,
+				9ABA06672930A23B001A23BB /* BannerView.swift in Sources */,
 				9ABA0660291E1515001A23BB /* NaverApiViewModel.swift in Sources */,
 				9ABA066229225863001A23BB /* NaverAdApiViewModel.swift in Sources */,
 				844CFAA6291CDEB800FBFA9C /* TopKeywordApp.swift in Sources */,
@@ -606,6 +611,8 @@
 				DEVELOPMENT_TEAM = K82D89RA5U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KingKeyword/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "킹키워드";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -637,6 +644,8 @@
 				DEVELOPMENT_TEAM = K82D89RA5U;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = KingKeyword/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "킹키워드";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -666,6 +675,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K82D89RA5U;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "킹키워드";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = arob6.TopKeywordTests;
@@ -687,6 +697,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = K82D89RA5U;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "킹키워드";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = arob6.TopKeywordTests;
