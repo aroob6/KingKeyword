@@ -33,7 +33,7 @@ struct TopKeywordApp: App {
 //                }
 //            }
 //        }
-        GADMobileAds.sharedInstance().start()
+//        GADMobileAds.sharedInstance().start()
     }
     var body: some Scene {
         WindowGroup {

@@ -18,11 +18,17 @@ struct KeywordListElement: Codable {
     let relKeyword: String
     let monthlyPcQcCnt: MonthlyMobileQcCntUnion
     let monthlyMobileQcCnt: MonthlyMobileQcCntUnion
+    let monthlyAvePcClkCnt: Double
+    let monthlyAveMobileClkCnt: Double
+    let compIdx: String
     
     init() {
         self.relKeyword = ""
         self.monthlyPcQcCnt = MonthlyMobileQcCntUnion.integer(0)
         self.monthlyMobileQcCnt = MonthlyMobileQcCntUnion.integer(0)
+        self.monthlyAvePcClkCnt = 0.0
+        self.monthlyAveMobileClkCnt = 0.0
+        self.compIdx = ""
     }
 //    let monthlyAvePCClkCnt, monthlyAveMobileClkCnt, monthlyAvePCCtr, monthlyAveMobileCtr: Double
 //    let plAvgDepth: Int
@@ -102,8 +108,6 @@ class NaverAdApiViewModel: ObservableObject {
     }
     
     func getRelKwdStat(query: String) {
-        //공백제거
-        let trimQuery = query.trimmingCharacters(in: .whitespaces).uppercased()
         
         let url = "https://api.naver.com/keywordstool"
         guard var urlComponents = URLComponents(string: url) else {
@@ -111,7 +115,7 @@ class NaverAdApiViewModel: ObservableObject {
             return
         }
         urlComponents.queryItems = [
-            URLQueryItem(name: "hintKeywords", value: trimQuery),
+            URLQueryItem(name: "hintKeywords", value: query),
             URLQueryItem(name: "showDetail", value: "1")
         ]
         
