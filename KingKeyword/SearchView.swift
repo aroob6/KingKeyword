@@ -15,7 +15,7 @@ struct SearchBar: View {
     var body: some View {
         HStack {
             HStack {
-                TextField("키워드 검색 (엔터키를 눌러주세요)", text: $text)
+                TextField("키워드 검색", text: $text)
                     .foregroundColor(.primary)
                     .frame(height: 30)
                 Image(systemName: "magnifyingglass")
@@ -55,13 +55,17 @@ struct SearchView: View {
     
     var body: some View {
         VStack {
-            BannerAdView().frame(height: 70).padding(EdgeInsets(top: 20, leading: 0, bottom: 0, trailing: 0))
+            BannerAdView().frame(height: 70).padding(EdgeInsets(top: 20, leading: 0, bottom: 20, trailing: 0))
             Spacer()
             Text("킹키워드")
                 .font(Font.title)
                 .fontWeight(Font.Weight.bold)
                 .foregroundColor(Color.mainColor)
-                .padding()
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0))
+            Text("검색 시 엔터키를 눌러주세요")
+                .font(Font.caption2)
+                .fontWeight(Font.Weight.semibold)
+                .foregroundColor(.gray)
             SearchBar(text: $searchText, empty: $emptyCheck)
                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 10, trailing: 0))
                 .onSubmit {
@@ -102,13 +106,13 @@ struct SearchView: View {
                             
                             VStack {
                                 Spacer()
-                                TitleTextView(title: searchText, textSize: 20)
+                                TitleTextView(title: searchText)
                                 Spacer()
                                 HStack() {
                                     Spacer()
-                                    TitleTextView(title: "블로그 비율\n \(String(format: "%.3f", blogPersent))", textSize: 20).foregroundColor(Color.mainColor).multilineTextAlignment(.center)
+                                    TitleTextView(title: "블로그 비율\n \(String(format: "%.3f", blogPersent))").foregroundColor(Color.mainColor).multilineTextAlignment(.center)
                                     Spacer()
-                                    TitleTextView(title: "카페 비율\n \(String(format: "%.3f", cafePersent))", textSize: 20).foregroundColor(Color.subColor).multilineTextAlignment(.center)
+                                    TitleTextView(title: "카페 비율\n \(String(format: "%.3f", cafePersent))").foregroundColor(Color.subColor).multilineTextAlignment(.center)
                                     Spacer()
                                 }
                                 Spacer()
@@ -116,28 +120,28 @@ struct SearchView: View {
                             
                             Spacer()
                             HStack {
-                                TypeView(title: "블로그글 수", content: "\(blog.numberFormatter())", titleTextSize: 15)
+                                TypeView(title: "블로그글 수", content: "\(blog.numberFormatter())")
                                 Spacer()
-                                TypeView(title: "카페글 수", content: "\(cafe.numberFormatter())", titleTextSize: 15)
+                                TypeView(title: "카페글 수", content: "\(cafe.numberFormatter())")
                                 Spacer()
-                                TypeView(title: "총 문서 수", content: "\(allDoc.numberFormatter())", titleTextSize: 15)
+                                TypeView(title: "총 문서 수", content: "\(allDoc.numberFormatter())")
                             }
                             Spacer()
                             HStack {
-                                TypeView(title: "PC 검색 수", content: "\(pcAmount.numberFormatter())", titleTextSize: 15)
+                                TypeView(title: "PC 검색 수", content: "\(pcAmount.numberFormatter())")
                                 Spacer()
-                                TypeView(title: "모바일 검색 수", content: "\(mobileAmount.numberFormatter())", titleTextSize: 15)
+                                TypeView(title: "모바일 검색 수", content: "\(mobileAmount.numberFormatter())")
                                 Spacer()
-                                TypeView(title: "총 검색 수", content: "\(allSearch.numberFormatter())", titleTextSize: 15)
+                                TypeView(title: "총 검색 수", content: "\(allSearch.numberFormatter())")
                                 
                             }
                             Spacer()
                             HStack {
-                                TypeView(title: "PC \n평균 클릭 수", content: "\(pcAvgClick)", titleTextSize: 15).multilineTextAlignment(.center)
+                                TypeView(title: "PC \n평균 클릭 수", content: "\(pcAvgClick)").multilineTextAlignment(.center)
                                 Spacer()
-                                TypeView(title: "모바일 \n평균 클릭 수", content: "\(mobileAvgClick)", titleTextSize: 15).multilineTextAlignment(.center)
+                                TypeView(title: "모바일 \n평균 클릭 수", content: "\(mobileAvgClick)").multilineTextAlignment(.center)
                                 Spacer()
-                                TypeView(title: "경쟁정도", content: "\(compIdx)", titleTextSize: 15)
+                                TypeView(title: "경쟁정도", content: "\(compIdx)")
                                 
                             }
                             
@@ -149,8 +153,8 @@ struct SearchView: View {
                         VStack() {
                             Spacer()
                             HStack {
-                                TitleTextView(title: "연관키워드", textSize: 20)//.foregroundColor(.black)
-                                TitleTextView(title: "\(naverAdApiviewModel.keywordList.keywordList.count)개", textSize: 10).foregroundColor(.gray)
+                                TitleTextView(title: "연관키워드")
+                                TitleTextView(title: "\(naverAdApiviewModel.keywordList.keywordList.count)개").foregroundColor(.gray)
                             }
                             ScrollView(.horizontal) {
                                 LazyHStack {
@@ -184,12 +188,11 @@ struct SearchView: View {
 struct TypeView: View {
     var title: String
     var content: String
-    var titleTextSize: CGFloat
     
     var body: some View {
         VStack{
             Spacer()
-            TitleTextView(title: title, textSize: titleTextSize)
+            TitleTextView(title: title)
             Spacer()
             ContentTextView(content: content)
             Spacer()
@@ -200,7 +203,6 @@ struct TypeView: View {
 }
 struct TitleTextView: View {
     var title: String
-    var textSize: CGFloat
     var body: some View {
         Text(title).fontWeight(Font.Weight.semibold)
     }
@@ -216,7 +218,7 @@ struct ContentTextView: View {
 struct ExplanView: View {
     var body: some View {
         VStack(alignment: .leading) {
-            TitleTextView(title: "PC/모바일 검색 수 - 최근 한 달간 네이버를 이용한 사용자가 PC 및 모바일 에서 해당 키워드를 검색한 횟수\n\n블로그/카페 글 수 - 네이버 총 검색 결과 개수\n\nPC/모바일 평균 클릭 수 - 최근 한 달 간 사용자가 해당 키워드를 검색했을 때, 통합검색 영역에 노출된 광고가 받은 평균 클릭수", textSize: 8).foregroundColor(.gray).minimumScaleFactor(0.5)
+            TitleTextView(title: "PC/모바일 검색 수 - 최근 한 달간 네이버를 이용한 사용자가 PC 및 모바일 에서 해당 키워드를 검색한 횟수\n블로그/카페 글 수 - 네이버 총 검색 결과 개수\nPC/모바일 평균 클릭 수 - 최근 한 달 간 사용자가 해당 키워드를 검색했을 때, 통합검색 영역에 노출된 광고가 받은 평균 클릭수\n경쟁 정도 - 최근 한달간 해당 키워드에 대한 경쟁정도를 PC통합검색영역 기준으로 높음/중간/낮음으로 구분한 지표").foregroundColor(.gray).minimumScaleFactor(0.5)
         }
     }
 }
