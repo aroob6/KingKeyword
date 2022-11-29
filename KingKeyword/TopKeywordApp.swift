@@ -13,7 +13,6 @@ import AppTrackingTransparency
 @main
 struct TopKeywordApp: App {
     init() {
-        
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 //            if #available(iOS 14, *) {
 //                ATTrackingManager.requestTrackingAuthorization { status in
@@ -33,7 +32,7 @@ struct TopKeywordApp: App {
 //                }
 //            }
 //        }
-//        GADMobileAds.sharedInstance().start()
+        GADMobileAds.sharedInstance().start()
     }
     var body: some Scene {
         WindowGroup {
