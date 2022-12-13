@@ -1,8 +1,8 @@
-# KingKeyword  <img src="etc/applogo.png" height="70">   
+# <img src="etc/applogo.png" height="70"> KingKeyword   
 
 ><img src="etc/qrCode.png" height="50"> [앱스토어 바로가기](http://bit.ly/3HuZLJA)
 
-<img width="100%" src="./etc/mainPreview.jpg">
+<img width="70%" src="./etc/mainPreview.jpg">
 
 ```
 ▶ 키워드의 비율을 블로그, 카페 별로 확인이 가능합니다.
