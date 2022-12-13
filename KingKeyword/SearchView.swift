@@ -204,7 +204,7 @@ struct TypeView: View {
 struct TitleTextView: View {
     var title: String
     var body: some View {
-        Text(title).fontWeight(Font.Weight.semibold)
+        Text(title).fontWeight(Font.Weight.semibold).minimumScaleFactor(0.5)
     }
 }
 
