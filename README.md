@@ -1,6 +1,7 @@
 # <img src="etc/applogo.png" height="70"> KingKeyword   
 
->[앱스토어 바로가기](http://bit.ly/3HuZLJA) | <img src="etc/qrCode.png" height="60">
+>[앱스토어 바로가기](http://bit.ly/3HuZLJA)
+><img src="etc/qrCode.png" height="60">
 
 <img width="70%" src="./etc/mainPreview.jpg">
 
